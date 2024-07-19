@@ -2,10 +2,15 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Welcome to <%= title %></h1>
+    <h2>Usernames:</h2>
+    <ul>
+      <% usernames.forEach(function(username) { %>
+      <li><%= username.username %></li>
+      <% }); %>
+    </ul>
+    <a href="/new">Add New User</a>
   </body>
 </html>
