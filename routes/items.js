@@ -15,14 +15,19 @@ router.get("/new", function (req, res, next) {
 });
 
 /* POST create items array */
-router.post("/", function (req, res, next) {
-  const itemName = req.body.itemName;
-  const itemCategory = req.body.itemCategory;
-  const itemBrand = req.body.itemBrand;
-  const itemPrice = req.body.itemPrice;
-  const itemQuantity = req.body.itemQuantity;
+router.post("/", async function (req, res, next) {
+  try {
+    const itemName = req.body.itemName;
+    const itemCategory = req.body.itemCategory;
+    const itemPrice = req.body.itemPrice;
+    const itemQuantity = req.body.itemQuantity;
 
-  res.redirect("/");
+    await db.insertItem(itemName, itemCategory, itemPrice, itemQuantity);
+    res.redirect("/");
+  } catch (err) {
+    console.log("Failed to add new item", err);
+    next(err);
+  }
 });
 
 module.exports = router;

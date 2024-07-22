@@ -6,7 +6,7 @@ const db = require("../db/queries");
 router.get("/", async function (req, res, next) {
   try {
     const itemnames = await db.getAllItemNames();
-    res.render("index", { title: "Express", itemnames });
+    res.render("index", { itemnames });
   } catch (err) {
     console.log("Error fetching inventory", err);
     next(err);

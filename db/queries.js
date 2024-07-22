@@ -6,11 +6,14 @@ async function getAllItemNames() {
   return rows;
 }
 
-async function insertUsername(username) {
-  await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
+async function insertItem(name, category, value, quantity) {
+  await pool.query(
+    "INSERT INTO items (NAME, CATEGORY, VALUE, QUANTITY) VALUES ($1, $2, $3, $4)",
+    [name, category, value, quantity]
+  );
 }
 
 module.exports = {
   getAllItemNames,
-  insertUsername,
+  insertItem,
 };
