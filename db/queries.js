@@ -1,7 +1,8 @@
 const pool = require("./pool");
+require("dotenv").config();
 
-async function getAllUsernames() {
-  const { rows } = await pool.query("SELECT * FROM usernames");
+async function getAllItemNames() {
+  const { rows } = await pool.query(`SELECT NAME FROM items`);
   return rows;
 }
 
@@ -10,6 +11,6 @@ async function insertUsername(username) {
 }
 
 module.exports = {
-  getAllUsernames,
+  getAllItemNames,
   insertUsername,
 };

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <form method="POST" action="/items">
+      <label>Item Name*</label>
+      <input
+        placeholder="Item name here..."
+        id="itemName"
+        name="itemName"
+        type="text"
+        required
+      />
+
+      <label>Item Category*</label>
+      <input
+        placeholder="Item category here..."
+        id="itemCategory"
+        name="itemCategory"
+        type="text"
+        required
+      />
+
+      <label>Item Brand</label>
+      <input
+        placeholder="Item brand here..."
+        id="itemBrand"
+        name="itemBrand"
+        type="text"
+      />
+
+      <label>Item Price*</label>
+      <input
+        placeholder="Item price here..."
+        id="itemPrice"
+        name="itemPrice"
+        type="number"
+        required
+      />
+
+      <label>Item Quantity*</label>
+      <input
+        placeholder="Item quantity here..."
+        id="itemQuantity"
+        name="itemQuantity"
+        type="number"
+        required
+      />
+
+      <button id="form-button" type="submit">Submit</button>
+    </form>
+  </body>
+</html>

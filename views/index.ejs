@@ -5,12 +5,13 @@
   </head>
   <body>
     <h1>Welcome to <%= title %></h1>
-    <h2>Usernames:</h2>
+    <h2>Inventory:</h2>
     <ul>
-      <% usernames.forEach(function(username) { %>
-      <li><%= username.username %></li>
+      <% itemnames.forEach(function(item) { %>
+      <li><%= item.name %></li>
       <% }); %>
     </ul>
-    <a href="/new">Add New User</a>
+    <a href="/items">View Items</a>
+    <a href="/categories">View Categories</a>
   </body>
 </html>
