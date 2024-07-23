@@ -2,15 +2,43 @@
 <html>
   <head>
     <title>Inventory App</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" />
   </head>
   <body>
-    <h1>Inventory App</h1>
-    <ul>
-      <% itemnames.forEach(function(item) { %>
-      <li><%= item.name %></li>
-      <% }); %>
-    </ul>
-    <a href="/items">View Items</a>
-    <a href="/categories">View Categories</a>
+    <div id="main-container">
+      <div id="sidebar">
+        <ul>
+          <li>mockup - will be replaced later</li>
+          <li>mockup - will be replaced later</li>
+          <li>mockup - will be replaced later</li>
+          <li>mockup - will be replaced later</li>
+          <li><a href="/items">View Items</a></li>
+          <li><a href="/categories">View Categories</a></li>
+        </ul>
+      </div>
+      <div id="inventory-container">
+        <h1>Inventory App</h1>
+        <div id="inventory-cards">
+          <p class="item-card">mockup - will be replaced later</p>
+          <p class="item-card">mockup - will be replaced later</p>
+          <p class="item-card">mockup - will be replaced later</p>
+          <p class="item-card">mockup - will be replaced later</p>
+        </div>
+        <div id="inventory-list">
+          <div class="item-grid">
+            <p class="item-name">Name</p>
+            <p class="item-quantity">Quantity</p>
+            <p class="item-value">Price Per Unit</p>
+          </div>
+          <% items.forEach(function(item) { %>
+          <div class="item-grid">
+            <p class="item-name"><%= item.name %></p>
+            <p class="item-quantity"><%= item.quantity %></p>
+            <p class="item-value"><%= item.value %></p>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
