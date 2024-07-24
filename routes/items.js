@@ -4,15 +4,10 @@ const db = require("../db/queries");
 
 const inventory = require("./index").inventory;
 
-/* GET items page */
-router.get("/", function (req, res, next) {
-  res.render("items");
-});
-
 /* GET add new items page. */
 router.get("/new", async function (req, res, next) {
   const categories = await db.getAllCategories();
-  const categoriesArray = categories.map((row) => row.category);
+  const categoriesArray = categories.map((row) => row.name);
   res.render("itemForm", { categoriesArray });
 });
 

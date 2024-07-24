@@ -60,6 +60,6 @@ body {
 .item-grid {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 0.5fr 1fr 1fr;
+  grid-template-columns: 0.5fr 0.5fr 1fr 1fr;
   text-align: center;
 }

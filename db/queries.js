@@ -2,20 +2,39 @@ const pool = require("./pool");
 require("dotenv").config();
 
 async function getAllItems() {
-  const { rows } = await pool.query(`SELECT * FROM items`);
+  const { rows } = await pool.query(`
+    SELECT items.id, items.name, category.name AS category, items.value, items.quantity FROM items
+    JOIN category ON items.category_id = category.id
+  `);
   return rows;
 }
 
 async function insertItem(name, category, value, quantity) {
+  console.log("running");
+
+  const categoryResult = await pool.query(
+    "SELECT id FROM category WHERE name = $1",
+    [category]
+  );
+
+  const categoryId = categoryResult.rows[0].id;
+
   await pool.query(
-    "INSERT INTO items (NAME, CATEGORY, VALUE, QUANTITY) VALUES ($1, $2, $3, $4)",
-    [name, category, value, quantity]
+    "INSERT INTO items (NAME, CATEGORY_ID, VALUE, QUANTITY) VALUES ($1, $2, $3, $4)",
+    [name, categoryId, value, quantity]
   );
 }
 
 async function getAllCategories() {
-  const { rows } = await pool.query("SELECT DISTINCT category FROM items");
+  const { rows } = await pool.query("SELECT * FROM category");
   return rows;
+}
+
+async function insertCategory(name) {
+  await pool.query(
+    "INSERT INTO category (NAME) VALUES ($1) ON CONFLICT DO NOTHING",
+    [name]
+  );
 }
 
 async function editItem(name, newCategory, newValue, newQuantity) {
@@ -37,4 +56,5 @@ module.exports = {
   getAllItems,
   insertItem,
   getAllCategories,
+  insertCategory,
 };

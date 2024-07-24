@@ -2,16 +2,26 @@ const { Client } = require("pg");
 require("dotenv").config();
 
 const SQL = `
+CREATE TABLE IF NOT EXISTS category (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(255) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS items (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   NAME VARCHAR(255),
-  CATEGORY VARCHAR(255),
+  category_id INTEGER REFERENCES category(id),
   VALUE DECIMAL(10, 2),
   QUANTITY INT
 );
 
-INSERT INTO items (NAME, CATEGORY, VALUE, QUANTITY)
-VALUES ('Absolut Vodka', 'Alcoholic Beverage', 12.99, 3)
+INSERT INTO category (name) VALUES ('Alcoholic Beverage');
+
+INSERT INTO items (name, category_id, value, quantity)
+VALUES ('Absolut Vodka', 
+        (SELECT id FROM category WHERE name = 'Alcoholic Beverage'), 
+        12.99, 
+        3);
 `;
 
 async function main() {
