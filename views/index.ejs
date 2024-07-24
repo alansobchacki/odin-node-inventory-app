@@ -17,29 +17,35 @@
         </ul>
       </div>
       <div id="inventory-container">
-        <h1 id="inventory-title">Inventory App</h1>
+        <div id="inventory-title">
+          <h1>Inventory App</h1>
+          <p><b>An Inventory management app for an imaginary store.</b></p>
+        </div>
         <div id="inventory-cards">
           <div class="item-card">
             <p>Most Expensive Item:</p>
-            <p class="item-highlight"><%= mostExpensiveItem %></p>
-            <p>Priced at $ <b><%= mostExpensiveItemPrice %></b>.</p>
+            <p class="item-highlight"><b><%= mostExpensiveItem %></b></p>
+            <p>Priced at $ <b><%= mostExpensiveItemPrice %></b>. 😲</p>
           </div>
           <div class="item-card">
             <p>Top Stock Item:</p>
-            <p class="item-highlight"><%= mostAbundantItem %></p>
+            <p class="item-highlight"><b><%= mostAbundantItem %></b></p>
             <p>
               Currently holds <b><%= mostAbundantItemQuantity%></b> in stock.
             </p>
           </div>
           <div class="item-card">
             <p>Number of Items in Inventory:</p>
-            <p class="item-highlight">mockup</p>
-            <p>mockup - will be replaced later</p>
+            <p class="item-highlight"><b><%= totalInventoryQuantity%></b></p>
+            <p>Add a few more items!</p>
           </div>
           <div class="item-card">
             <p>Total Value of Items:</p>
-            <p class="item-highlight">mockup</p>
-            <p>mockup - will be replaced later</p>
+            <p class="item-highlight">$ <b><%= totalInventoryValue %></b></p>
+            <p>
+              <% if (totalInventoryValue > 999) { %> 🤑 <% } else { %> 💸 <% }
+              %>
+            </p>
           </div>
         </div>
         <div id="inventory-list">
@@ -57,8 +63,8 @@
             <p class="item-category bottom"><%= item.category %></p>
             <p class="item-quantity bottom"><%= item.quantity %></p>
             <p class="item-value bottom">$ <b><%= item.value %></b></p>
-            <p class="item-edit bottom">E</p>
-            <p class="item-delete bottom">X</p>
+            <p class="item-edit bottom">📝</p>
+            <p class="item-delete bottom">🗑️</p>
           </div>
           <% }); %>
         </div>

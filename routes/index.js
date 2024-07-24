@@ -1,25 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/queries");
+const inventoryService = require("../utils/calculateInventory");
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   try {
     const items = await db.getAllItems();
-    const queryExpensiveItems = await db.getMostExpensiveItem();
-    const mostExpensiveItem = queryExpensiveItems.name;
-    const mostExpensiveItemPrice = queryExpensiveItems.value;
-
-    const queryAbundantItems = await db.getItemWithHighestQuantity();
-    const mostAbundantItem = queryAbundantItems.name;
-    const mostAbundantItemQuantity = queryAbundantItems.quantity;
+    const expensiveItem = await db.getMostExpensiveItem();
+    const abundantItem = await db.getItemWithHighestQuantity();
+    const totalValue = await inventoryService.calculateTotalInventoryValue();
+    const totalQuantity =
+      await inventoryService.calculateTotalInventoryQuantity();
 
     res.render("index", {
       items,
-      mostExpensiveItem,
-      mostExpensiveItemPrice,
-      mostAbundantItem,
-      mostAbundantItemQuantity,
+      mostExpensiveItem: expensiveItem.name,
+      mostExpensiveItemPrice: expensiveItem.value,
+      mostAbundantItem: abundantItem.name,
+      mostAbundantItemQuantity: abundantItem.quantity,
+      totalInventoryValue: totalValue,
+      totalInventoryQuantity: totalQuantity,
     });
   } catch (err) {
     console.log("Error fetching inventory", err);
