@@ -1,25 +1,35 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
 }
 
 #main-container {
   display: flex;
-  height: 100vh;
 }
 
 #sidebar {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  background-color: rgb(204, 204, 204);
+  background-color: #f8f8f8;
 }
 
 #inventory-container {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  margin: 1%;
+  border-radius: 12px;
+  box-shadow: 7px 10px 12px -7px rgba(217, 217, 217, 1);
+}
+
+#inventory-title {
+  padding-bottom: 10px;
   margin-left: 1%;
-  margin-right: 1%;
+  border-bottom: 2px solid #f8f8f8;
 }
 
 #inventory-cards {
@@ -28,12 +38,20 @@ body {
 }
 
 .item-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 225px;
-  height: 125px;
+  height: 135px;
   padding: 10px;
   margin: 5px;
-  border: 1px solid #ccc;
   border-radius: 6px;
+  box-shadow: 7px 10px 12px -7px rgba(217, 217, 217, 1);
+}
+
+.item-highlight {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .item-card:nth-child(1) {
@@ -45,7 +63,7 @@ body {
 }
 
 .item-card:nth-child(3) {
-  background-color: lightgreen;
+  background-color: #caffca;
 }
 
 .item-card:nth-child(4) {
@@ -55,11 +73,32 @@ body {
 #inventory-list {
   display: flex;
   flex-direction: column;
+  margin-top: 2%;
+  gap: 0;
 }
 
 .item-grid {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 0.5fr 0.5fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 0.5fr 0.7fr 0.2fr 0.2fr;
   text-align: center;
+  align-items: center;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  gap: 0;
+}
+
+.item-edit:hover,
+.item-delete:hover {
+  cursor: pointer;
+}
+
+.top {
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin: 0;
+}
+
+.bottom {
+  padding: 10px;
+  margin: 5px;
 }

@@ -17,26 +17,48 @@
         </ul>
       </div>
       <div id="inventory-container">
-        <h1>Inventory App</h1>
+        <h1 id="inventory-title">Inventory App</h1>
         <div id="inventory-cards">
-          <p class="item-card">mockup - will be replaced later</p>
-          <p class="item-card">mockup - will be replaced later</p>
-          <p class="item-card">mockup - will be replaced later</p>
-          <p class="item-card">mockup - will be replaced later</p>
+          <div class="item-card">
+            <p>Most Expensive Item:</p>
+            <p class="item-highlight"><%= mostExpensiveItem %></p>
+            <p>Priced at $ <b><%= mostExpensiveItemPrice %></b>.</p>
+          </div>
+          <div class="item-card">
+            <p>Top Stock Item:</p>
+            <p class="item-highlight"><%= mostAbundantItem %></p>
+            <p>
+              Currently holds <b><%= mostAbundantItemQuantity%></b> in stock.
+            </p>
+          </div>
+          <div class="item-card">
+            <p>Number of Items in Inventory:</p>
+            <p class="item-highlight">mockup</p>
+            <p>mockup - will be replaced later</p>
+          </div>
+          <div class="item-card">
+            <p>Total Value of Items:</p>
+            <p class="item-highlight">mockup</p>
+            <p>mockup - will be replaced later</p>
+          </div>
         </div>
         <div id="inventory-list">
           <div class="item-grid">
-            <p class="item-name">Name</p>
-            <p class="item-category">Category</p>
-            <p class="item-quantity">Quantity</p>
-            <p class="item-value">Price Per Unit</p>
+            <p class="item-name top"><b>Name</b></p>
+            <p class="item-category top"><b>Category</b></p>
+            <p class="item-quantity top"><b>Quantity</b></p>
+            <p class="item-value top"><b>Price Per Unit</b></p>
+            <p class="item-edit top"><b>Edit</b></p>
+            <p class="item-delete top"><b>Delete</b></p>
           </div>
           <% items.forEach(function(item) { %>
           <div class="item-grid">
-            <p class="item-name"><%= item.name %></p>
-            <p class="item-category"><%= item.category %></p>
-            <p class="item-quantity"><%= item.quantity %></p>
-            <p class="item-value"><%= item.value %></p>
+            <p class="item-name bottom"><%= item.name %></p>
+            <p class="item-category bottom"><%= item.category %></p>
+            <p class="item-quantity bottom"><%= item.quantity %></p>
+            <p class="item-value bottom">$ <b><%= item.value %></b></p>
+            <p class="item-edit bottom">E</p>
+            <p class="item-delete bottom">X</p>
           </div>
           <% }); %>
         </div>

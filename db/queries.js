@@ -1,6 +1,8 @@
 const pool = require("./pool");
 require("dotenv").config();
 
+// queries to GET and POST items/categories
+// items
 async function getAllItems() {
   const { rows } = await pool.query(`
     SELECT items.id, items.name, category.name AS category, items.value, items.quantity FROM items
@@ -10,8 +12,6 @@ async function getAllItems() {
 }
 
 async function insertItem(name, category, value, quantity) {
-  console.log("running");
-
   const categoryResult = await pool.query(
     "SELECT id FROM category WHERE name = $1",
     [category]
@@ -25,6 +25,23 @@ async function insertItem(name, category, value, quantity) {
   );
 }
 
+async function getMostExpensiveItem() {
+  const { rows } = await pool.query(
+    "SELECT * FROM items ORDER BY value DESC LIMIT 1"
+  );
+
+  return rows[0];
+}
+
+async function getItemWithHighestQuantity() {
+  const { rows } = await pool.query(
+    "SELECT * FROM items ORDER BY quantity DESC LIMIT 1"
+  );
+
+  return rows[0];
+}
+
+// categories
 async function getAllCategories() {
   const { rows } = await pool.query("SELECT * FROM category");
   return rows;
@@ -57,4 +74,6 @@ module.exports = {
   insertItem,
   getAllCategories,
   insertCategory,
+  getMostExpensiveItem,
+  getItemWithHighestQuantity,
 };
