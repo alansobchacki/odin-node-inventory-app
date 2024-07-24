@@ -16,13 +16,12 @@
       />
 
       <label>Item Category*</label>
-      <input
-        placeholder="Item category here..."
-        id="itemCategory"
-        name="itemCategory"
-        type="text"
-        required
-      />
+      <select id="itemCategory" name="itemCategory" required>
+        <option value="" disabled selected>Select a category...</option>
+        <% categoriesArray.forEach(function(category) { %>
+        <option value="<%= category %>"><%= category %></option>
+        <% }) %>
+      </select>
 
       <label>Item Price*</label>
       <input
@@ -45,5 +44,7 @@
 
       <button id="form-button" type="submit">Submit</button>
     </form>
+
+    <a href="/">Return to inventory</a>
   </body>
 </html>

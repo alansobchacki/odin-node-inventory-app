@@ -9,9 +9,11 @@ router.get("/", function (req, res, next) {
   res.render("items");
 });
 
-/* GET add new users page. */
-router.get("/new", function (req, res, next) {
-  res.render("itemForm");
+/* GET add new items page. */
+router.get("/new", async function (req, res, next) {
+  const categories = await db.getAllCategories();
+  const categoriesArray = categories.map((row) => row.category);
+  res.render("itemForm", { categoriesArray });
 });
 
 /* POST create items array */

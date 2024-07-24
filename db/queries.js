@@ -13,6 +13,11 @@ async function insertItem(name, category, value, quantity) {
   );
 }
 
+async function getAllCategories() {
+  const { rows } = await pool.query("SELECT DISTINCT category FROM items");
+  return rows;
+}
+
 async function editItem(name, newCategory, newValue, newQuantity) {
   await pool.query(
     "UPDATE items SET category = $1, value = $2, quantity = $3 WHERE name = $4",
@@ -31,4 +36,5 @@ async function deleteCategory(category) {
 module.exports = {
   getAllItems,
   insertItem,
+  getAllCategories,
 };
