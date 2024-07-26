@@ -78,13 +78,26 @@ async function deleteItem(name) {
 }
 
 // categories
-async function deleteCategory(category) {
+async function deleteCategory(categoryName) {
   const client = await pool.connect();
 
   try {
     await client.query("BEGIN");
-    await client.query("DELETE FROM items WHERE category = $1", [category]);
-    await client.query("DELETE FROM category WHERE category = $1", [category]);
+
+    // Step 1: Get the category_id for the given categoryName
+    const categoryResult = await client.query(
+      "SELECT id FROM category WHERE name = $1",
+      [categoryName]
+    );
+
+    const categoryId = categoryResult.rows[0].id;
+
+    await client.query("DELETE FROM items WHERE category_id = $1", [
+      categoryId,
+    ]);
+
+    await client.query("DELETE FROM category WHERE name = $1", [categoryName]);
+
     await client.query("COMMIT");
   } catch (e) {
     await client.query("ROLLBACK");

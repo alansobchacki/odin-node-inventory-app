@@ -56,6 +56,7 @@ router.delete("/", async function (req, res, next) {
     const categoryToDelete = req.body.categoryName;
 
     await db.deleteCategory(categoryToDelete);
+    res.redirect("/");
   } catch (err) {
     console.log("Failed to delete category", err);
     next(err);
