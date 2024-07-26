@@ -1,7 +1,7 @@
 const pool = require("./pool");
 require("dotenv").config();
 
-// queries to GET and POST items/categories
+// queries to get and create items/categories
 // items
 async function getAllItems() {
   const { rows } = await pool.query(`
@@ -54,19 +54,44 @@ async function insertCategory(name) {
   );
 }
 
-async function editItem(name, newCategory, newValue, newQuantity) {
+// queries to edit items/categories
+// items
+async function editItem(newName, newCategory, newValue, newQuantity) {
   await pool.query(
-    "UPDATE items SET category = $1, value = $2, quantity = $3 WHERE name = $4",
-    [newCategory, newValue, newQuantity, name]
+    "UPDATE items SET name = $1, category = $2, value = $3, quantity = $4 WHERE name = $5",
+    [newName, newCategory, newValue, newQuantity, originalName]
   );
 }
 
+// categories
+async function editCategory(newCategory, oldCategory) {
+  await pool.query("UPDATE category SET name = $1 WHERE NAME = $2", [
+    newCategory,
+    oldCategory,
+  ]);
+}
+
+// queries to delete items/categories
+// items
 async function deleteItem(name) {
   await pool.query("DELETE FROM items WHERE name = $1", [name]);
 }
 
+// categories
 async function deleteCategory(category) {
-  await pool.query("DELETE FROM items WHERE category = $1", [category]);
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+    await client.query("DELETE FROM items WHERE category = $1", [category]);
+    await client.query("DELETE FROM category WHERE category = $1", [category]);
+    await client.query("COMMIT");
+  } catch (e) {
+    await client.query("ROLLBACK");
+    throw e;
+  } finally {
+    client.release();
+  }
 }
 
 module.exports = {
@@ -76,4 +101,6 @@ module.exports = {
   insertCategory,
   getMostExpensiveItem,
   getItemWithHighestQuantity,
+  editCategory,
+  deleteCategory,
 };

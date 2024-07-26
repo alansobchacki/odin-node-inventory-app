@@ -8,7 +8,7 @@ const inventory = require("./index").inventory;
 router.get("/new", async function (req, res, next) {
   const categories = await db.getAllCategories();
   const categoriesArray = categories.map((row) => row.name);
-  res.render("itemForm", { categoriesArray });
+  res.render("newItemForm", { categoriesArray });
 });
 
 /* POST create items array */

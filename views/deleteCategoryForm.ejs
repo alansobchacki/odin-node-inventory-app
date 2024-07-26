@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>DELETING CATEGORIES</h1>
+
+    <form method="DELETE" action="/categories?_method=DELETE">
+      <label>Choose Category To Edit*</label>
+      <select id="categoryName" name="categoryName" required>
+        <option value="" disabled selected>Select a category...</option>
+        <% categoriesArray.forEach(function(category) { %>
+        <option value="<%= category %>"><%= category %></option>
+        <% }) %>
+      </select>
+
+      <button id="form-button" type="submit">Submit</button>
+    </form>
+
+    <h2>
+      Warning: deleting a category will also delete all items that belong to
+      that category.
+    </h2>
+    <p>
+      i.e: deleting "Fruit" will delete both "Banana" and "Lemon" from your
+      inventory.
+    </p>
+
+    <a href="/">Return to inventory</a>
+  </body>
+</html>

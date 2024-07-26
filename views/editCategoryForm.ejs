@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST" action="/categories?_method=PATCH">
+      <h1>EDITING CATEGORIES</h1>
+      <label>Choose Category To Edit*</label>
+      <select id="oldCategoryName" name="oldCategoryName" required>
+        <option value="" disabled selected>Select a category...</option>
+        <% categoriesArray.forEach(function(category) { %>
+        <option value="<%= category %>"><%= category %></option>
+        <% }) %>
+      </select>
+
+      <label>New Category Name*</label>
+      <input
+        placeholder="Category name here..."
+        id="newCategoryName"
+        name="newCategoryName"
+        type="text"
+        required
+      />
+
+      <button id="form-button" type="submit">Submit</button>
+    </form>
+
+    <a href="/">Return to inventory</a>
+  </body>
+</html>
