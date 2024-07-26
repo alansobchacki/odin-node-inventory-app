@@ -59,6 +59,10 @@ body {
   box-shadow: 7px 10px 12px -7px rgba(217, 217, 217, 1);
 }
 
+.item-card p {
+  margin: 2%;
+}
+
 .item-highlight {
   font-size: 1.2rem;
 }

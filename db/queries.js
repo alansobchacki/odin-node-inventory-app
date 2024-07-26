@@ -114,6 +114,7 @@ module.exports = {
   insertCategory,
   getMostExpensiveItem,
   getItemWithHighestQuantity,
+  deleteItem,
   editCategory,
   deleteCategory,
 };

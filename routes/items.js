@@ -27,4 +27,17 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+/* DELETE request to delete an item */
+router.delete("/:name", async function (req, res, next) {
+  try {
+    const itemName = req.params.name;
+
+    await db.deleteItem(itemName);
+    res.redirect("/");
+  } catch (err) {
+    console.error("Failed to delete item", err);
+    next(err);
+  }
+});
+
 module.exports = router;
