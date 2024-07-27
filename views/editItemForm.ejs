@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>EDIT EXISTING ITEM</h1>
+    <p>Currently editing the item "<%= oldName %>"</p>
+    <form method="POST" action="/items?_method=PATCH">
+      <input type="hidden" name="oldName" value="<%= oldName %>" />
+
+      <label>Item Name*</label>
+      <input
+        placeholder="Item name here..."
+        id="itemName"
+        name="itemName"
+        type="text"
+        required
+      />
+
+      <label>Item Category*</label>
+      <select id="itemCategory" name="itemCategory" required>
+        <option value="" disabled selected>Select a category...</option>
+        <% categoriesArray.forEach(function(category) { %>
+        <option value="<%= category %>"><%= category %></option>
+        <% }) %>
+      </select>
+
+      <label>Item Price*</label>
+      <input
+        placeholder="Item price here..."
+        step="0.01"
+        id="itemPrice"
+        name="itemPrice"
+        type="number"
+        required
+      />
+
+      <label>Item Quantity*</label>
+      <input
+        placeholder="Item quantity here..."
+        id="itemQuantity"
+        name="itemQuantity"
+        type="number"
+        required
+      />
+
+      <button id="form-button" type="submit">Submit</button>
+    </form>
+
+    <a href="/">Return to inventory</a>
+  </body>
+</html>

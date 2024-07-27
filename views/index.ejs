@@ -60,11 +60,14 @@
             <p class="item-category bottom"><%= item.category %></p>
             <p class="item-quantity bottom"><%= item.quantity %></p>
             <p class="item-value bottom">$ <b><%= item.value %></b></p>
-
             <% /* Each emoji will become a form that will allow each individual
             item to be deleted/edited */ %>
 
-            <p class="item-edit bottom">📝</p>
+            <form method="GET" action="/items/edit/<%= item.name %>">
+              <input type="hidden" />
+              <button type="submit" class="item-edit">📝</button>
+            </form>
+
             <form
               method="POST"
               action="/items/<%= item.name %>?_method=DELETE"
@@ -73,7 +76,7 @@
               <input type="hidden" name="_method" value="DELETE" />
               <button
                 type="submit"
-                class="item-delete bottom"
+                class="item-delete"
                 onclick="return confirm('Are you sure you want to delete this item?');"
               >
                 🗑️

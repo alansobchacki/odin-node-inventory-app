@@ -1,7 +1,7 @@
 const pool = require("./pool");
 require("dotenv").config();
 
-// queries to get and create items/categories
+// GET / POST queries
 // items
 async function getAllItems() {
   const { rows } = await pool.query(`
@@ -54,12 +54,19 @@ async function insertCategory(name) {
   );
 }
 
-// queries to edit items/categories
+// EDIT queries
 // items
-async function editItem(newName, newCategory, newValue, newQuantity) {
+async function editItem(newName, newCategory, newValue, newQuantity, oldName) {
+  const categoryResult = await pool.query(
+    "SELECT id FROM category WHERE name = $1",
+    [newCategory]
+  );
+
+  const categoryId = categoryResult.rows[0].id;
+
   await pool.query(
-    "UPDATE items SET name = $1, category = $2, value = $3, quantity = $4 WHERE name = $5",
-    [newName, newCategory, newValue, newQuantity, originalName]
+    "UPDATE items SET name = $1, category_id = $2, value = $3, quantity = $4 WHERE name = $5",
+    [newName, categoryId, newValue, newQuantity, oldName]
   );
 }
 
@@ -71,7 +78,7 @@ async function editCategory(newCategory, oldCategory) {
   ]);
 }
 
-// queries to delete items/categories
+// DELETE queries
 // items
 async function deleteItem(name) {
   await pool.query("DELETE FROM items WHERE name = $1", [name]);
@@ -84,7 +91,6 @@ async function deleteCategory(categoryName) {
   try {
     await client.query("BEGIN");
 
-    // Step 1: Get the category_id for the given categoryName
     const categoryResult = await client.query(
       "SELECT id FROM category WHERE name = $1",
       [categoryName]
@@ -115,6 +121,7 @@ module.exports = {
   getMostExpensiveItem,
   getItemWithHighestQuantity,
   deleteItem,
+  editItem,
   editCategory,
   deleteCategory,
 };

@@ -11,6 +11,15 @@ router.get("/new", async function (req, res, next) {
   res.render("newItemForm", { categoriesArray });
 });
 
+/* GET edit items page */
+router.get("/edit/:name", async function (req, res, next) {
+  const categories = await db.getAllCategories();
+  const categoriesArray = categories.map((row) => row.name);
+  const oldName = req.params.name;
+
+  res.render("editItemForm", { categoriesArray, oldName });
+});
+
 /* POST create items array */
 router.post("/", async function (req, res, next) {
   try {
@@ -23,6 +32,23 @@ router.post("/", async function (req, res, next) {
     res.redirect("/");
   } catch (err) {
     console.log("Failed to add new item", err);
+    next(err);
+  }
+});
+
+/* PATCH update an item */
+router.patch("/", async function (req, res, next) {
+  try {
+    const oldName = req.body.oldName;
+    const newName = req.body.itemName;
+    const newCategory = req.body.itemCategory;
+    const newValue = req.body.itemPrice;
+    const newQuantity = req.body.itemQuantity;
+
+    await db.editItem(newName, newCategory, newValue, newQuantity, oldName);
+    res.redirect("/");
+  } catch (err) {
+    console.log("Failed to edit item", err);
     next(err);
   }
 });
