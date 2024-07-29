@@ -57,6 +57,10 @@ a {
   min-width: 75%;
 }
 
+#inventory-container h1 {
+  font-size: 1.2rem;
+}
+
 #inventory-title {
   display: flex;
   justify-content: space-between;
