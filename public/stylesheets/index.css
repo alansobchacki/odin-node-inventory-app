@@ -42,6 +42,12 @@ a {
   border-radius: 6px;
 }
 
+#sidebar p {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 5%;
+}
+
 #sidebar a:hover {
   background-color: white;
 }
