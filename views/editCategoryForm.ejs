@@ -3,31 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" />
+    <title>Editing Category - Inventory App</title>
   </head>
   <body>
-    <form method="POST" action="/categories?_method=PATCH">
-      <h1>EDITING CATEGORIES</h1>
-      <label>Choose Category To Edit*</label>
-      <select id="oldCategoryName" name="oldCategoryName" required>
-        <option value="" disabled selected>Select a category...</option>
-        <% categoriesArray.forEach(function(category) { %>
-        <option value="<%= category %>"><%= category %></option>
-        <% }) %>
-      </select>
+    <div id="main-container">
+      <div id="sidebar">
+        <h1>Imaginary Store</h1>
+        <h2>Categories Manager</h2>
+        <a href="/categories/new">📃 Add Categories</a>
+        <a href="/categories/edit">📝 Edit Categories</a>
+        <a href="/categories/delete">🗑️ Delete Categories</a>
+      </div>
 
-      <label>New Category Name*</label>
-      <input
-        placeholder="Category name here..."
-        id="newCategoryName"
-        name="newCategoryName"
-        type="text"
-        required
-      />
+      <div id="inventory-container">
+        <h1>Editing Category</h1>
 
-      <button id="form-button" type="submit">Submit</button>
-    </form>
+        <form method="POST" action="/categories?_method=PATCH">
+          <div class="input-container">
+            <label>Choose Category To Edit*</label>
+            <select id="oldCategoryName" name="oldCategoryName" required>
+              <option value="" disabled selected>Select a category...</option>
+              <% categoriesArray.forEach(function(category) { %>
+              <option value="<%= category %>"><%= category %></option>
+              <% }) %>
+            </select>
 
-    <a href="/">Return to inventory</a>
+            <label>New Category Name*</label>
+            <input
+              placeholder="Category name here..."
+              id="newCategoryName"
+              name="newCategoryName"
+              type="text"
+              required
+            />
+          </div>
+
+          <button id="form-button" type="submit">Submit</button>
+        </form>
+
+        <a class="return" href="/">🔙 Return to inventory</a>
+      </div>
+    </div>
   </body>
 </html>

@@ -162,6 +162,7 @@ a {
   padding: 2%;
   margin-top: 1%;
   border-radius: 6px;
+  text-align: center;
 }
 
 .add-new-item a:hover {
