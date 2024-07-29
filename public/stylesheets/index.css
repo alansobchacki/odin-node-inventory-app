@@ -5,6 +5,11 @@ body {
   background-color: #f8f8f8;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 #main-container {
   display: flex;
 }
@@ -29,8 +34,6 @@ body {
 }
 
 #sidebar a {
-  color: black;
-  text-decoration: none;
   border-bottom: 1px solid rgb(230, 230, 230);
   margin-top: 1%;
   margin-bottom: 1%;
@@ -51,6 +54,7 @@ body {
   margin: 1%;
   border-radius: 12px;
   box-shadow: 7px 10px 12px -7px rgba(217, 217, 217, 1);
+  min-width: 75%;
 }
 
 #inventory-title {
@@ -154,9 +158,6 @@ body {
 }
 
 .add-new-item a {
-  text-decoration: none;
-  color: black;
-  text-align: center;
   font-size: 1.1rem;
   padding: 2%;
   margin-top: 1%;
@@ -165,4 +166,29 @@ body {
 
 .add-new-item a:hover {
   background-color: #f8f8f8;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+  gap: 10px;
+}
+
+.input-container input {
+  padding: 5px;
+}
+
+#form-button {
+  margin-top: 2%;
+  width: 75px;
+  height: 30px;
+}
+
+#form-button:hover {
+  cursor: pointer;
+}
+
+.return {
+  margin-top: 2%;
 }

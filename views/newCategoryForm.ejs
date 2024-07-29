@@ -3,22 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" />
     <title>Document</title>
   </head>
   <body>
-    <form method="POST" action="/categories">
-      <label>Category Name*</label>
-      <input
-        placeholder="Category name here..."
-        id="categoryName"
-        name="categoryName"
-        type="text"
-        required
-      />
+    <div id="main-container">
+      <div id="sidebar">
+        <h1>Imaginary Store</h1>
+        <h2>Categories Manager</h2>
+        <a href="/categories/new">📃 Add Categories</a>
+        <a href="/categories/edit">📝 Edit Categories</a>
+        <a href="/categories/delete">🗑️ Delete Categories</a>
+      </div>
+      <div id="inventory-container">
+        <h1>Adding New Category</h1>
 
-      <button id="form-button" type="submit">Submit</button>
-    </form>
+        <form method="POST" action="/categories">
+          <div class="input-container">
+            <label>Category Name*</label>
+            <input
+              placeholder="Category name here..."
+              id="categoryName"
+              name="categoryName"
+              type="text"
+              required
+            />
+          </div>
 
-    <a href="/">Return to inventory</a>
+          <button id="form-button" type="submit">Submit</button>
+        </form>
+
+        <a class="return" href="/">🔙 Return to inventory</a>
+      </div>
+    </div>
   </body>
 </html>
