@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/queries");
+const checkPassword = require("../utils/checkPassword");
 
 const inventory = require("./index").inventory;
 
@@ -20,8 +21,15 @@ router.get("/edit/:name", async function (req, res, next) {
   res.render("editItemForm", { categoriesArray, oldName });
 });
 
+/* GET delete items page */
+router.get("/delete/:name", async function (req, res, next) {
+  const oldName = req.params.name;
+
+  res.render("deleteItemForm", { oldName });
+});
+
 /* POST create new item */
-router.post("/", async function (req, res, next) {
+router.post("/", checkPassword, async function (req, res, next) {
   try {
     const itemName = req.body.itemName;
     const itemCategory = req.body.itemCategory;
@@ -37,7 +45,7 @@ router.post("/", async function (req, res, next) {
 });
 
 /* PATCH update an item */
-router.patch("/", async function (req, res, next) {
+router.patch("/", checkPassword, async function (req, res, next) {
   try {
     const oldName = req.body.oldName;
     const newName = req.body.itemName;
@@ -54,9 +62,9 @@ router.patch("/", async function (req, res, next) {
 });
 
 /* DELETE delete an item */
-router.delete("/:name", async function (req, res, next) {
+router.delete("/", checkPassword, async function (req, res, next) {
   try {
-    const itemName = req.params.name;
+    const itemName = req.body.oldName;
 
     await db.deleteItem(itemName);
     res.redirect("/");

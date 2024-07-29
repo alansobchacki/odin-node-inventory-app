@@ -75,19 +75,9 @@
               <button type="submit" class="item-edit">📝</button>
             </form>
 
-            <form
-              method="POST"
-              action="/items/<%= item.name %>?_method=DELETE"
-              style="display: inline"
-            >
-              <input type="hidden" name="_method" value="DELETE" />
-              <button
-                type="submit"
-                class="item-delete"
-                onclick="return confirm('Are you sure you want to delete this item?');"
-              >
-                🗑️
-              </button>
+            <form method="GET" action="/items/delete/<%= item.name %>">
+              <input type="hidden" />
+              <button type="submit" class="item-delete">🗑️</button>
             </form>
           </div>
           <% }); %>

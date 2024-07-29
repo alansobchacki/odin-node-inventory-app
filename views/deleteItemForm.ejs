@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" />
-    <title>Deleting Category - Inventory App</title>
+    <title>Deleting Item - Inventory App</title>
   </head>
   <body>
     <div id="main-container">
@@ -22,21 +22,11 @@
       </div>
 
       <div id="inventory-container">
-        <h1>
-          Warning: deleting a category will also delete all items that belong to
-          that category.
-        </h1>
+        <h1>Deleting Item "<%= oldName %>"</h1>
 
-        <form method="POST" action="/categories?_method=DELETE">
+        <form method="POST" action="/items?_method=DELETE">
+          <input type="hidden" name="oldName" value="<%= oldName %>" />
           <div class="input-container">
-            <label>Choose Category To Delete*</label>
-            <select id="categoryName" name="categoryName" required>
-              <option value="" disabled selected>Select a category...</option>
-              <% categoriesArray.forEach(function(category) { %>
-              <option value="<%= category %>"><%= category %></option>
-              <% }) %>
-            </select>
-
             <label>Admin Password*</label>
             <input
               placeholder="Admin password here..."

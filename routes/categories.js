@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/queries");
+const checkPassword = require("../utils/checkPassword");
 
 /* GET new category page */
 router.get("/new", function (req, res, next) {
@@ -24,7 +25,7 @@ router.get("/delete", async function (req, res, next) {
 });
 
 /* POST create new category */
-router.post("/", async function (req, res, next) {
+router.post("/", checkPassword, async function (req, res, next) {
   try {
     const categoryName = req.body.categoryName;
 
@@ -37,7 +38,7 @@ router.post("/", async function (req, res, next) {
 });
 
 /* PATCH update a category */
-router.patch("/", async function (req, res, next) {
+router.patch("/", checkPassword, async function (req, res, next) {
   try {
     const oldCategoryName = req.body.oldCategoryName;
     const newCategoryName = req.body.newCategoryName;
@@ -51,7 +52,7 @@ router.patch("/", async function (req, res, next) {
 });
 
 /* DELETE delete a category */
-router.delete("/", async function (req, res, next) {
+router.delete("/", checkPassword, async function (req, res, next) {
   try {
     const categoryToDelete = req.body.categoryName;
 
