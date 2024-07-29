@@ -1,51 +1,79 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Form</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css" />
+    <title>Adding New Item - Inventory App</title>
   </head>
   <body>
-    <h1>ADD NEW ITEM</h1>
-    <form method="POST" action="/items">
-      <label>Item Name*</label>
-      <input
-        placeholder="Item name here..."
-        id="itemName"
-        name="itemName"
-        type="text"
-        required
-      />
+    <div id="main-container">
+      <div id="sidebar">
+        <h1>Imaginary Store</h1>
+        <h2>Categories Manager</h2>
+        <a href="/categories/new">📃 Add Categories</a>
+        <a href="/categories/edit">📝 Edit Categories</a>
+        <a href="/categories/delete">🗑️ Delete Categories</a>
+        <h2>Disclaimer</h2>
+        <p>
+          To prevent shenanigans, you can only add, edit, or delete stuff if you
+          have an admin password.
+        </p>
+      </div>
 
-      <label>Item Category*</label>
-      <select id="itemCategory" name="itemCategory" required>
-        <option value="" disabled selected>Select a category...</option>
-        <% categoriesArray.forEach(function(category) { %>
-        <option value="<%= category %>"><%= category %></option>
-        <% }) %>
-      </select>
+      <div id="inventory-container">
+        <h1>Adding New Item</h1>
 
-      <label>Item Price*</label>
-      <input
-        placeholder="Item price here..."
-        step="0.01"
-        id="itemPrice"
-        name="itemPrice"
-        type="number"
-        required
-      />
+        <form method="POST" action="/items">
+          <div class="input-container">
+            <label>Item Name*</label>
+            <input
+              placeholder="Item name here..."
+              id="itemName"
+              name="itemName"
+              type="text"
+              required
+            />
+          </div>
 
-      <label>Item Quantity*</label>
-      <input
-        placeholder="Item quantity here..."
-        id="itemQuantity"
-        name="itemQuantity"
-        type="number"
-        required
-      />
+          <div class="input-container">
+            <label>Item Category*</label>
+            <select id="itemCategory" name="itemCategory" required>
+              <option value="" disabled selected>Select a category...</option>
+              <% categoriesArray.forEach(function(category) { %>
+              <option value="<%= category %>"><%= category %></option>
+              <% }) %>
+            </select>
+          </div>
 
-      <button id="form-button" type="submit">Submit</button>
-    </form>
+          <div class="input-container">
+            <label>Item Price*</label>
+            <input
+              placeholder="Item price here..."
+              step="0.01"
+              id="itemPrice"
+              name="itemPrice"
+              type="number"
+              required
+            />
+          </div>
 
-    <a href="/">Return to inventory</a>
+          <div class="input-container">
+            <label>Item Quantity*</label>
+            <input
+              placeholder="Item quantity here..."
+              id="itemQuantity"
+              name="itemQuantity"
+              type="number"
+              required
+            />
+          </div>
+
+          <button id="form-button" type="submit">Submit</button>
+        </form>
+
+        <a class="return" href="/">🔙 Return to inventory</a>
+      </div>
+    </div>
   </body>
 </html>
