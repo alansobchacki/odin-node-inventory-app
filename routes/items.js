@@ -20,7 +20,7 @@ router.get("/edit/:name", async function (req, res, next) {
   res.render("editItemForm", { categoriesArray, oldName });
 });
 
-/* POST create items array */
+/* POST create new item */
 router.post("/", async function (req, res, next) {
   try {
     const itemName = req.body.itemName;
@@ -53,7 +53,7 @@ router.patch("/", async function (req, res, next) {
   }
 });
 
-/* DELETE request to delete an item */
+/* DELETE delete an item */
 router.delete("/:name", async function (req, res, next) {
   try {
     const itemName = req.params.name;

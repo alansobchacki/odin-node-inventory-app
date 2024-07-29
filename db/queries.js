@@ -54,7 +54,7 @@ async function insertCategory(name) {
   );
 }
 
-// EDIT queries
+// PATCH (EDIT) queries
 // items
 async function editItem(newName, newCategory, newValue, newQuantity, oldName) {
   const categoryResult = await pool.query(
