@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node --watch ./bin/www",
-    "build": "node populatedb.js && npm start"
+    "build": "node db/populatedb.js && npm start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
