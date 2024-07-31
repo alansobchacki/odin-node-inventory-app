@@ -15,13 +15,15 @@ CREATE TABLE IF NOT EXISTS items (
   QUANTITY INT
 );
 
-INSERT INTO category (name) VALUES ('Alcoholic Beverage');
+INSERT INTO category (name) VALUES ('Alcoholic Beverage')
+ON CONFLICT DO NOTHING;
 
 INSERT INTO items (name, category_id, value, quantity)
 VALUES ('Absolut Vodka', 
         (SELECT id FROM category WHERE name = 'Alcoholic Beverage'), 
         12.99, 
-        3);
+        3)
+ON CONFLICT DO NOTHING;
 `;
 
 async function main() {
