@@ -30,7 +30,7 @@ Well, there's a lot to unpack here. This is my first full-stack app, built with 
 
 I learned the basics of SQL, MVC, HTTP methods, working in a local/production environment, and setting up a PostgreSQL database.
 
-I also learned the basics of deployment, about relational databases, middleware functions (especially .env), and more.
+I also learned the basics of deployment, relational databases, middleware functions (especially .env), and more.
 
 It was fun to set up a project like this, and I can't wait to learn more advanced stuff.
 
@@ -41,11 +41,9 @@ This app was built using NodeJS, Express, EJS, PostgreSQL, and pure HTML/CSS/Jav
 
 The database and the app are hosted at https://adaptable.io/ (big shoutout to the folks behind Adaptable for making such an awesome free plan).
 
-I focused on making the project a bit pretty, but did not think about building a responsive design. It might look bad in mobile devices.
+It is NOT mobile-friendly, as I only tend to focus on time-consuming details (like responsive design) when a project demands it.
 
-It is NOT mobile-friendly, as I only tend to focus on more details (like responsive design) when a project demands it.
-
-P.S — You need a password to perform most actions. This way, tricksters won't be able to add in "funny names" into the database. However, if you want to test the CRUD methods, contact me and I'll give you a temporary password.
+P.S. — You need a password to perform most actions. This way, tricksters won't be able to add "funny names" to the database. However, if you want to test the CRUD methods, contact me and I'll give you a temporary password.
 
 
 
